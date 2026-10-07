@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natthaphong Cafe</title>
+    <style>
+        :root {
+            --coffee-dark: #3b2818;
+            --coffee-medium: #8b5a33;
+            --coffee-light: #d4a373;
+            --cream: #fefae0;
+            --text-main: #2b1d14;
+            --text-light: #6a4a36;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cream);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--coffee-dark);
+            color: var(--cream);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: var(--cream);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--coffee-light);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(59, 40, 24, 0.7), rgba(59, 40, 24, 0.7)), url('https://placehold.co/1200x600/3b2818/d4a373?text=Cozy+Coffee+Shop') center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--cream);
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--coffee-medium);
+            margin-bottom: 3rem;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--coffee-light);
+            margin: 0.5rem auto 0;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .menu-category h3 {
+            color: var(--coffee-dark);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+        }
+
+        .menu-item-price {
+            color: var(--coffee-medium);
+            font-weight: bold;
+        }
+
+        .menu-item-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .address p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--coffee-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: var(--coffee-medium);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--coffee-dark);
+        }
+
+        footer {
+            background-color: var(--coffee-dark);
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            nav ul {
+                display: none; /* Simplification for plain HTML/CSS without JS toggle */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Natthaphong Cafe</a>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#hours-location">Hours & Location</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to Natthaphong Cafe</h1>
+            <p>Your local spot for artisanal coffee, fresh pastries, and warm conversations.</p>
+        </section>
+
+        <section id="menu">
+            <h2>Our Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-category">
+                    <h3>Coffee & Espresso</h3>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">House Drip</div>
+                            <div class="menu-item-desc">Single-origin daily brew</div>
+                        </div>
+                        <div class="menu-item-price">$3.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Latte</div>
+                            <div class="menu-item-desc">Espresso with steamed milk & foam</div>
+                        </div>
+                        <div class="menu-item-price">$4.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Cappuccino</div>
+                            <div class="menu-item-desc">Equal parts espresso, milk, and thick foam</div>
+                        </div>
+                        <div class="menu-item-price">$4.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Mocha</div>
+                            <div class="menu-item-desc">Espresso, chocolate, steamed milk</div>
+                        </div>
+                        <div class="menu-item-price">$5.00</div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>Teas & More</h3>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Matcha Latte</div>
+                            <div class="menu-item-desc">Ceremonial grade matcha with oat milk</div>
+                        </div>
+                        <div class="menu-item-price">$5.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Chai Latte</div>
+                            <div class="menu-item-desc">Spiced black tea with steamed milk</div>
+                        </div>
+                        <div class="menu-item-price">$4.75</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Iced Hibiscus Tea</div>
+                            <div class="menu-item-desc">Refreshing and tart floral tea</div>
+                        </div>
+                        <div class="menu-item-price">$3.75</div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>Bakery</h3>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Butter Croissant</div>
+                            <div class="menu-item-desc">Flaky, buttery, baked fresh daily</div>
+                        </div>
+                        <div class="menu-item-price">$3.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Blueberry Muffin</div>
+                            <div class="menu-item-desc">Loaded with wild blueberries</div>
+                        </div>
+                        <div class="menu-item-price">$4.00</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-item-name">Avocado Toast</div>
+                            <div class="menu-item-desc">Sourdough, smashed avocado, chili flakes</div>
+                        </div>
+                        <div class="menu-item-price">$8.50</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hours-location" style="background-color: #f8f4ec;">
+            <h2>Hours & Location</h2>
+            <div class="info-grid">
+                <div>
+                    <h3 style="color: var(--coffee-dark); margin-bottom: 1.5rem;">Opening Hours</h3>
+                    <ul class="hours-list">
+                        <li><span>Monday - Friday</span> <span>7:00 AM - 6:00 PM</span></li>
+                        <li><span>Saturday</span> <span>8:00 AM - 6:00 PM</span></li>
+                        <li><span>Sunday</span> <span>8:00 AM - 4:00 PM</span></li>
+                    </ul>
+                </div>
+                <div class="address">
+                    <h3 style="color: var(--coffee-dark); margin-bottom: 1.5rem;">Find Us</h3>
+                    <p><strong>Natthaphong Cafe</strong></p>
+                    <p>123 Coffee Bean Lane<br>
+                    Brewsville, CA 90210</p>
+                    <p style="margin-top: 1rem;">
+                        <strong>Phone:</strong> (555) 123-4567<br>
+                        <strong>Email:</strong> hello@natthaphongcafe.com
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <div class="contact-form">
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Thank you for your message! (Form submission is mocked)');">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Natthaphong Cafe. All rights reserved.</p>
+    </footer>
+</body>
+</html>
